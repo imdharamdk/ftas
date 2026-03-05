@@ -14,7 +14,7 @@ async function loadData() {
 try {
 
 const res = await axios.get(
-"http://localhost:5000/api/market/fear-greed"
+"https://ftas-api.onrender.com/api/market/fear-greed"
 );
 
 setData(res.data);

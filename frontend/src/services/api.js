@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:5000/api"
+  baseURL: "https://ftas-api.onrender.com/api"
 });
 
 export const getSignals = () => API.get("/signals");

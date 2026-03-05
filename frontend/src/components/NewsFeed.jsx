@@ -15,7 +15,7 @@ async function loadNews(){
 try{
 
 const res = await axios.get(
-"http://localhost:5000/api/news"
+"https://ftas-api.onrender.com/api/news"
 )
 
 setNews(res.data)
