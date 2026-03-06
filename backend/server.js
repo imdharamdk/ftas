@@ -13,19 +13,27 @@ const paymentRoutes = require("./routes/payment");
 
 const app = express();
 
-/* ------------------- MIDDLEWARE ------------------- */
+/* ================================
+   MIDDLEWARE
+================================ */
 
 app.use(cors());
 
 app.use(express.json());
 
-/* ------------------- ROOT ROUTE ------------------- */
+/* ================================
+   ROOT ROUTE
+================================ */
 
 app.get("/", (req, res) => {
+
   res.send("FTAS API running successfully 🚀");
+
 });
 
-/* ------------------- API ROUTES ------------------- */
+/* ================================
+   API ROUTES
+================================ */
 
 app.use("/api/coins", coinRoutes);
 
@@ -39,24 +47,31 @@ app.use("/api/auth", authRoutes);
 
 app.use("/api/payment", paymentRoutes);
 
-/* ------------------- DATABASE ------------------- */
+/* ================================
+   MONGODB CONNECTION
+================================ */
 
 mongoose
-  .connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  })
+  .connect(process.env.MONGO_URI)
   .then(() => {
-    console.log("MongoDB connected successfully");
+
+    console.log("MongoDB connected");
+
   })
   .catch((err) => {
-    console.log("MongoDB connection error:", err);
+
+    console.log("MongoDB Error:", err);
+
   });
 
-/* ------------------- SERVER ------------------- */
+/* ================================
+   SERVER START
+================================ */
 
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+
+  console.log("Server running on port", PORT);
+
 });
