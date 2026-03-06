@@ -14,7 +14,7 @@ loadCoins();
 async function loadCoins(){
 
 const res=await axios.get(
-"https://ftas-api.onrender.com/api/coins/volume"
+"https://ftas.onrender.com/api/coins/volume"
 );
 
 setCoins(res.data.slice(0,30));
