@@ -1,40 +1,32 @@
 const express = require("express");
 const router = express.Router();
-const axios = require("axios");
 
-const { generateSignal } = require("../services/signalEngine");
+const { generateSignal } = require("../services/signalService");
 
 router.get("/", async (req, res) => {
 
   try {
 
-    /* GET ALL FUTURES TICKERS */
+    const coins = [
+      "BTCUSDT",
+      "ETHUSDT",
+      "SOLUSDT",
+      "BNBUSDT",
+      "XRPUSDT",
+      "ADAUSDT",
+      "DOGEUSDT",
+      "LINKUSDT",
+      "AVAXUSDT",
+      "MATICUSDT"
+    ];
 
-    const response = await axios.get(
-      "https://fapi.binance.com/fapi/v1/ticker/24hr"
-    );
+    const signals = [];
 
-    let coins = response.data;
+    for (const coin of coins) {
 
-    /* FILTER USDT PAIRS */
+      const signal = await generateSignal(coin);
 
-    coins = coins.filter(c => c.symbol.endsWith("USDT"));
-
-    /* SORT BY VOLUME */
-
-    coins.sort((a,b) => b.quoteVolume - a.quoteVolume);
-
-    /* TAKE TOP 30 COINS */
-
-    coins = coins.slice(0,30);
-
-    let signals = [];
-
-    for (let coin of coins) {
-
-      const signal = await generateSignal(coin.symbol);
-
-      if(signal){
+      if (signal) {
         signals.push(signal);
       }
 
@@ -44,11 +36,8 @@ router.get("/", async (req, res) => {
 
   } catch (error) {
 
-    console.log("Signals API error:", error);
-
-    res.status(500).json({
-      error:"Failed to fetch signals"
-    });
+    console.error("Signals API error:", error);
+    res.status(500).json({ error: "Failed to generate signals" });
 
   }
 
