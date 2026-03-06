@@ -13,7 +13,7 @@ export default function Signup() {
     try {
 
       await axios.post(
-        "https://ftas-api.onrender.com/api/auth/signup",
+        "https://ftas.onrender.com/api/auth/signup",
         { email, password }
       );
 
