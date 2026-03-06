@@ -1,41 +1,51 @@
 const axios = require("axios");
+const { RSI, EMA } = require("technicalindicators");
 
 async function generateSignal(symbol) {
-
   try {
 
-    const url =
-      `https://fapi.binance.com/fapi/v1/ticker/price?symbol=${symbol}`;
+    const url = `https://fapi.binance.com/fapi/v1/klines?symbol=${symbol}&interval=5m&limit=100`;
 
     const response = await axios.get(url);
 
-    const price = parseFloat(response.data.price);
+    const closes = response.data.map(c => parseFloat(c[4]));
 
-    const entry = price;
+    const rsi = RSI.calculate({
+      values: closes,
+      period: 14
+    });
 
-    const tp1 = parseFloat((price * 1.01).toFixed(4));
-    const tp2 = parseFloat((price * 1.02).toFixed(4));
-    const sl = parseFloat((price * 0.99).toFixed(4));
+    const ema100 = EMA.calculate({
+      values: closes,
+      period: 100
+    });
+
+    const lastPrice = closes[closes.length - 1];
+    const lastRSI = rsi[rsi.length - 1];
+    const lastEMA = ema100[ema100.length - 1];
+
+    let signal = "HOLD";
+
+    if (lastPrice > lastEMA && lastRSI < 35) {
+      signal = "BUY";
+    }
+
+    if (lastPrice < lastEMA && lastRSI > 65) {
+      signal = "SELL";
+    }
 
     return {
-      symbol: symbol,
-      signal: "BUY",
-      entry: entry,
-      tp1: tp1,
-      tp2: tp2,
-      sl: sl
+      symbol,
+      price: lastPrice,
+      rsi: lastRSI,
+      ema: lastEMA,
+      signal
     };
 
   } catch (error) {
-
-    console.log("Signal error:", error.message);
-
+    console.error("Signal error:", error.message);
     return null;
-
   }
-
 }
 
-module.exports = {
-  generateSignal
-};
+module.exports = { generateSignal };
