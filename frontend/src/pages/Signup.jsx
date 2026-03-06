@@ -10,20 +10,27 @@ export default function Signup() {
 
     e.preventDefault();
 
+    if (!email || !password) {
+      alert("Email and password required");
+      return;
+    }
+
     try {
 
-      await axios.post(
+      const res = await axios.post(
         "https://ftas.onrender.com/api/auth/signup",
         { email, password }
       );
 
-      alert("Signup successful");
+      alert(res.data.message || "Signup successful");
 
       window.location.href = "/login";
 
     } catch (err) {
 
-      alert("Signup failed");
+      console.log(err.response?.data || err.message);
+
+      alert(err.response?.data?.error || "Signup failed");
 
     }
 
@@ -39,12 +46,14 @@ export default function Signup() {
         <input
           type="email"
           placeholder="Email"
+          value={email}
           onChange={(e)=>setEmail(e.target.value)}
         />
 
         <input
           type="password"
           placeholder="Password"
+          value={password}
           onChange={(e)=>setPassword(e.target.value)}
         />
 
