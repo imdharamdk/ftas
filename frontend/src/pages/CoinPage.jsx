@@ -43,7 +43,7 @@ function CoinPage() {
     try{
 
       const res = await axios.get(
-        "https://ftas-api.onrender.com/api/signals/"+sym
+        "https://ftas.onrender.com/api/signals/"+sym
       );
 
       setSignal(res.data);
