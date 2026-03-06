@@ -25,7 +25,7 @@ const loadSignals = async ()=>{
 
 try{
 
-const res = await axios.get("https:ftas-api.onrender.com/api/signals");
+const res = await axios.get("https:ftas.onrender.com/api/signals");
 
 const sorted = res.data.sort((a,b)=>{
 return a.symbol.localeCompare(b.symbol);
