@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
-const { generateSignal } = require("../services/signalService");
+// signal engine import
+const { generateSignal } = require("../services/signalEngine");
 
 router.get("/", async (req, res) => {
 
@@ -24,20 +25,36 @@ router.get("/", async (req, res) => {
 
     for (const coin of coins) {
 
-      const signal = await generateSignal(coin);
+      try {
 
-      if (signal) {
-        signals.push(signal);
+        const signal = await generateSignal(coin);
+
+        if (signal) {
+          signals.push(signal);
+        }
+
+      } catch (err) {
+
+        console.error(`Signal error for ${coin}:`, err.message);
+
       }
 
     }
 
-    res.json(signals);
+    res.json({
+      success: true,
+      total: signals.length,
+      signals: signals
+    });
 
   } catch (error) {
 
     console.error("Signals API error:", error);
-    res.status(500).json({ error: "Failed to generate signals" });
+
+    res.status(500).json({
+      success: false,
+      message: "Failed to generate signals"
+    });
 
   }
 
