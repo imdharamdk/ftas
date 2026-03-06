@@ -12,7 +12,7 @@ export default function Login() {
     try {
 
       const res = await axios.post(
-        "https://ftas-api.onrender.com/api/auth/login",
+        "https://ftas.onrender.com/api/auth/login",
         { email, password }
       );
 
