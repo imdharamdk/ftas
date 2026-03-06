@@ -17,7 +17,7 @@ export default function Subscribe() {
     try {
 
       await axios.post(
-        "https://ftas-api.onrender.com/api/payment/submit",
+        "https://ftas.onrender.com/api/payment/submit",
         {
           email: user.email,
           txid: txid,
