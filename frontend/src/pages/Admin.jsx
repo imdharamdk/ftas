@@ -38,7 +38,7 @@ async function loadStats(){
 try{
 
 const res=await axios.get(
-"https://ftas-api.onrender.com/api/admin/stats"
+"https://ftas.onrender.com/api/admin/stats"
 );
 
 setStats(res.data);
