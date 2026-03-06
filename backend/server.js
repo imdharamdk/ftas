@@ -13,37 +13,47 @@ const paymentRoutes = require("./routes/payment");
 
 const app = express();
 
-/* MIDDLEWARE */
+/* ------------------- MIDDLEWARE ------------------- */
 
-app.use(cors({
-  origin: "*"
-}));
+app.use(cors());
 
 app.use(express.json());
 
-/* ROUTES */
-
-app.use("/api/coins", coinRoutes);
-app.use("/api/signals", signalRoutes);
-app.use("/api/news", newsRoutes);
-app.use("/api/market", marketRoutes);
-app.use("/api/auth", authRoutes);
-app.use("/api/payment", paymentRoutes);
-
-/* ROOT */
+/* ------------------- ROOT ROUTE ------------------- */
 
 app.get("/", (req, res) => {
-  res.send("FTAS API running");
+  res.send("FTAS API running successfully 🚀");
 });
 
-/* MONGODB */
+/* ------------------- API ROUTES ------------------- */
+
+app.use("/api/coins", coinRoutes);
+
+app.use("/api/signals", signalRoutes);
+
+app.use("/api/news", newsRoutes);
+
+app.use("/api/market", marketRoutes);
+
+app.use("/api/auth", authRoutes);
+
+app.use("/api/payment", paymentRoutes);
+
+/* ------------------- DATABASE ------------------- */
 
 mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.log("MongoDB Error:", err));
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+  .then(() => {
+    console.log("MongoDB connected successfully");
+  })
+  .catch((err) => {
+    console.log("MongoDB connection error:", err);
+  });
 
-/* SERVER */
+/* ------------------- SERVER ------------------- */
 
 const PORT = process.env.PORT || 5000;
 
