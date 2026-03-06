@@ -15,11 +15,11 @@ function MarketMovers() {
     try {
 
       const g = await axios.get(
-        "https://ftas-api.onrender.com/api/coins/gainers"
+        "https://ftas.onrender.com/api/coins/gainers"
       );
 
       const l = await axios.get(
-        "https://ftas-api.onrender.com/api/coins/losers"
+        "https://ftas.onrender.com/api/coins/losers"
       );
 
       setGainers(g.data);
