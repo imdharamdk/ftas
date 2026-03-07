@@ -3,7 +3,7 @@ const router = express.Router();
 
 const { generateSignal } = require("../services/signalEngine");
 
-const coins = [
+const coins=[
 "BTCUSDT",
 "ETHUSDT",
 "BNBUSDT",
@@ -24,23 +24,10 @@ const signals=[];
 
 for(const symbol of coins){
 
-const signal = await generateSignal(symbol);
+const signal=await generateSignal(symbol);
 
 if(signal){
-
 signals.push(signal);
-
-}else{
-
-signals.push({
-symbol,
-signal:"HOLD",
-entry:0,
-tp1:0,
-tp2:0,
-sl:0
-});
-
 }
 
 }
@@ -57,4 +44,4 @@ res.json([]);
 
 });
 
-module.exports = router;
+module.exports=router;
