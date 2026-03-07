@@ -15,34 +15,62 @@ timeout:10000
 
 const price = parseFloat(response.data.price);
 
+if(!price){
+return null;
+}
+
 let signal="HOLD";
+let entry=null;
+let tp1=null;
+let tp2=null;
+let sl=null;
 
-let entry=price;
-let tp1=price*1.01;
-let tp2=price*1.02;
-let sl=price*0.99;
 
+// simple trend generator
 
-// simple trend logic
+const r=Math.random();
 
-const rand=Math.random();
-
-if(rand>0.66){
+if(r>0.66){
 signal="BUY";
 }
 
-else if(rand<0.33){
+else if(r<0.33){
 signal="SELL";
 }
+
+
+// BUY logic
+
+if(signal==="BUY"){
+
+entry=price;
+tp1=price*1.01;
+tp2=price*1.02;
+sl=price*0.99;
+
+}
+
+
+// SELL logic
+
+if(signal==="SELL"){
+
+entry=price;
+tp1=price*0.99;
+tp2=price*0.98;
+sl=price*1.01;
+
+}
+
 
 return{
 
 symbol,
 signal,
-entry:Number(entry.toFixed(4)),
-tp1:Number(tp1.toFixed(4)),
-tp2:Number(tp2.toFixed(4)),
-sl:Number(sl.toFixed(4))
+entry: entry ? Number(entry.toFixed(4)) : null,
+tp1: tp1 ? Number(tp1.toFixed(4)) : null,
+tp2: tp2 ? Number(tp2.toFixed(4)) : null,
+sl: sl ? Number(sl.toFixed(4)) : null
 
 };
 
@@ -56,4 +84,6 @@ return null;
 
 }
 
-module.exports={generateSignal};
+module.exports={
+generateSignal
+};
