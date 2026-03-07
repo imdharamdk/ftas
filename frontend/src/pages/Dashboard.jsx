@@ -4,116 +4,103 @@ import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
 
-  const [signals, setSignals] = useState([]);
-  const navigate = useNavigate();
+const [signals,setSignals] = useState([]);
+const navigate = useNavigate();
 
-  useEffect(() => {
-    loadSignals();
+useEffect(()=>{
 
-    const interval = setInterval(() => {
-      loadSignals();
-    }, 15000);
+loadSignals();
 
-    return () => clearInterval(interval);
-  }, []);
+const interval = setInterval(()=>{
+loadSignals();
+},15000);
 
-  const loadSignals = async () => {
+return ()=>clearInterval(interval);
 
-    try {
+},[]);
 
-      const res = await axios.get(
-        "https://ftas.onrender.com/api/signals"
-      );
 
-      if (Array.isArray(res.data)) {
-        setSignals(res.data);
-      } else {
-        setSignals([]);
-      }
+const loadSignals = async ()=>{
 
-    } catch (err) {
+try{
 
-      console.log("Signal load error:", err);
+const res = await axios.get("https://ftas.onrender.com/api/signals");
 
-      setSignals([]);
+const sorted = res.data.sort((a,b)=>{
+return a.symbol.localeCompare(b.symbol);
+});
 
-    }
+setSignals(sorted);
 
-  };
+}catch(err){
 
-  const openMarket = (symbol) => {
-    navigate("/coin/" + symbol);
-  };
+console.log(err);
 
-  return (
+}
 
-    <div className="container">
+};
 
-      <h2 style={{ marginBottom: "20px" }}>
-        Live Trading Signals
-      </h2>
 
-      <table className="signals-table">
+const openMarket=(symbol)=>{
 
-        <thead>
-          <tr>
-            <th>Coin</th>
-            <th>Signal</th>
-            <th>Entry</th>
-            <th>TP1</th>
-            <th>TP2</th>
-            <th>SL</th>
-          </tr>
-        </thead>
+navigate("/coin/"+symbol);
 
-        <tbody>
+};
 
-          {signals.length === 0 && (
-            <tr>
-              <td colSpan="6">Loading signals...</td>
-            </tr>
-          )}
 
-          {signals.map((s, i) => (
+return(
 
-            <tr key={i}>
+<div className="container">
 
-              <td
-                className="coin"
-                onClick={() => openMarket(s.symbol)}
-              >
-                {s.symbol || "-"}
-              </td>
+<h2 style={{marginBottom:"20px"}}>
+Live Trading Signals
+</h2>
 
-              <td>{s.signal || "-"}</td>
+<table className="signals-table">
 
-              <td>
-                {s.entry ? Number(s.entry).toFixed(4) : "-"}
-              </td>
+<thead>
 
-              <td>
-                {s.tp1 ? Number(s.tp1).toFixed(4) : "-"}
-              </td>
+<tr>
+<th>Coin</th>
+<th>Signal</th>
+<th>Entry</th>
+<th>TP1</th>
+<th>TP2</th>
+<th>SL</th>
+</tr>
 
-              <td>
-                {s.tp2 ? Number(s.tp2).toFixed(4) : "-"}
-              </td>
+</thead>
 
-              <td>
-                {s.sl ? Number(s.sl).toFixed(4) : "-"}
-              </td>
+<tbody>
 
-            </tr>
+{signals.map((s,i)=>(
 
-          ))}
+<tr key={i}>
 
-        </tbody>
+<td
+className="coin"
+onClick={()=>openMarket(s.symbol)}
+>
+{s.symbol}
+</td>
 
-      </table>
+<td>{s.signal}</td>
+<td>{s.entry}</td>
+<td>{s.tp1}</td>
+<td>{s.tp2}</td>
+<td>{s.sl}</td>
 
-    </div>
+</tr>
 
-  );
+))}
+
+</tbody>
+
+</table>
+
+</div>
+
+);
 
 }
 
