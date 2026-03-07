@@ -1,62 +1,59 @@
 const express = require("express");
 const router = express.Router();
 
-// signal engine import
 const { generateSignal } = require("../services/signalEngine");
 
-router.get("/", async (req, res) => {
+const coins = [
+"BTCUSDT",
+"ETHUSDT",
+"BNBUSDT",
+"SOLUSDT",
+"XRPUSDT",
+"ADAUSDT",
+"DOGEUSDT",
+"AVAXUSDT",
+"DOTUSDT",
+"MATICUSDT"
+];
 
-  try {
+router.get("/", async (req,res)=>{
 
-    const coins = [
-      "BTCUSDT",
-      "ETHUSDT",
-      "SOLUSDT",
-      "BNBUSDT",
-      "XRPUSDT",
-      "ADAUSDT",
-      "DOGEUSDT",
-      "LINKUSDT",
-      "AVAXUSDT",
-      "MATICUSDT"
-    ];
+try{
 
-    const signals = [];
+const signals=[];
 
-    for (const coin of coins) {
+for(const symbol of coins){
 
-      try {
+const signal = await generateSignal(symbol);
 
-        const signal = await generateSignal(coin);
+if(signal){
 
-        if (signal) {
-          signals.push(signal);
-        }
+signals.push(signal);
 
-      } catch (err) {
+}else{
 
-        console.error(`Signal error for ${coin}:`, err.message);
+signals.push({
+symbol,
+signal:"HOLD",
+entry:0,
+tp1:0,
+tp2:0,
+sl:0
+});
 
-      }
+}
 
-    }
+}
 
-    res.json({
-      success: true,
-      total: signals.length,
-      signals: signals
-    });
+res.json(signals);
 
-  } catch (error) {
+}catch(err){
 
-    console.error("Signals API error:", error);
+console.log("Signals API error:",err);
 
-    res.status(500).json({
-      success: false,
-      message: "Failed to generate signals"
-    });
+res.json([]);
 
-  }
+}
 
 });
 
