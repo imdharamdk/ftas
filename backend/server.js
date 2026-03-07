@@ -13,38 +13,54 @@ const paymentRoutes = require("./routes/payment");
 
 const app = express();
 
-/* Middleware */
+/* =========================
+   MIDDLEWARE
+========================= */
 
 app.use(cors());
+
 app.use(express.json());
 
-/* Root */
+/* =========================
+   ROOT ROUTE
+========================= */
 
 app.get("/", (req, res) => {
   res.send("FTAS API running successfully 🚀");
 });
 
-/* Routes */
+/* =========================
+   API ROUTES
+========================= */
 
 app.use("/api/coins", coinRoutes);
+
 app.use("/api/signals", signalRoutes);
+
 app.use("/api/news", newsRoutes);
+
 app.use("/api/market", marketRoutes);
+
 app.use("/api/auth", authRoutes);
+
 app.use("/api/payment", paymentRoutes);
 
-/* MongoDB */
+/* =========================
+   DATABASE CONNECTION
+========================= */
 
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
-    console.log("MongoDB connected");
+    console.log("MongoDB connected successfully");
   })
   .catch((err) => {
-    console.log("MongoDB Error:", err);
+    console.log("MongoDB connection error:", err);
   });
 
-/* Server */
+/* =========================
+   SERVER START
+========================= */
 
 const PORT = process.env.PORT || 5000;
 
