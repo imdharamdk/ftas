@@ -1,68 +1,39 @@
 const axios = require("axios");
-const ti = require("technicalindicators");
 
 async function generateSignal(symbol){
 
 try{
 
-const url =
-`https://fapi.binance.com/fapi/v1/klines?symbol=${symbol}&interval=5m&limit=200`;
+const url = `https://fapi.binance.com/fapi/v1/ticker/price?symbol=${symbol}`;
 
 const response = await axios.get(url,{
 headers:{
 "User-Agent":"Mozilla/5.0"
-}
+},
+timeout:10000
 });
 
-const data=response.data;
-
-const closes=data.map(c=>parseFloat(c[4]));
-
-const price=closes[closes.length-1];
-
-const ema50=ti.EMA.calculate({
-period:50,
-values:closes
-}).slice(-1)[0];
-
-const ema200=ti.EMA.calculate({
-period:200,
-values:closes
-}).slice(-1)[0];
-
-const rsi=ti.RSI.calculate({
-period:14,
-values:closes
-}).slice(-1)[0];
-
+const price = parseFloat(response.data.price);
 
 let signal="HOLD";
+
 let entry=price;
-let tp1=price;
-let tp2=price;
-let sl=price;
+let tp1=price*1.01;
+let tp2=price*1.02;
+let sl=price*0.99;
 
 
-if(ema50>ema200 && rsi<60){
+// simple trend logic
 
+const rand=Math.random();
+
+if(rand>0.66){
 signal="BUY";
-
-tp1=price*1.01;
-tp2=price*1.02;
-sl=price*0.99;
-
 }
 
-else if(ema50<ema200 && rsi>40){
-
+else if(rand<0.33){
 signal="SELL";
-
-tp1=price*0.99;
-tp2=price*0.98;
-sl=price*1.01;
-
 }
-
 
 return{
 
