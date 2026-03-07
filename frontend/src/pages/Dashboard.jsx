@@ -5,14 +5,18 @@ import { useNavigate } from "react-router-dom";
 function Dashboard() {
 
   const [signals, setSignals] = useState([]);
+
   const navigate = useNavigate();
+
 
   useEffect(() => {
 
     loadSignals();
 
     const interval = setInterval(() => {
+
       loadSignals();
+
     }, 15000);
 
     return () => clearInterval(interval);
@@ -20,21 +24,20 @@ function Dashboard() {
   }, []);
 
 
+
   const loadSignals = async () => {
 
     try {
 
-      const res = await axios.get("https://ftas.onrender.com/api/signals");
+      const res = await axios.get(
+        "https://ftas.onrender.com/api/signals"
+      );
 
-      const sorted = res.data.sort((a, b) => {
-        return a.symbol.localeCompare(b.symbol);
-      });
-
-      setSignals(sorted);
+      setSignals(res.data);
 
     } catch (err) {
 
-      console.log(err);
+      console.log("Signals error:", err);
 
     }
 
@@ -56,7 +59,6 @@ function Dashboard() {
         Live Trading Signals
       </h2>
 
-
       <table className="signals-table">
 
         <thead>
@@ -72,41 +74,42 @@ function Dashboard() {
 
         </thead>
 
-
         <tbody>
 
-          {signals.length === 0 && (
+          {signals.length === 0 ? (
 
             <tr>
               <td colSpan="6">Loading signals...</td>
             </tr>
 
+          ) : (
+
+            signals.map((s, i) => (
+
+              <tr key={i}>
+
+                <td
+                  className="coin"
+                  onClick={() => openMarket(s.symbol)}
+                >
+                  {s.symbol}
+                </td>
+
+                <td>{s.signal}</td>
+
+                <td>{Number(s.entry).toFixed(4)}</td>
+
+                <td>{Number(s.tp1).toFixed(4)}</td>
+
+                <td>{Number(s.tp2).toFixed(4)}</td>
+
+                <td>{Number(s.sl).toFixed(4)}</td>
+
+              </tr>
+
+            ))
+
           )}
-
-          {signals.map((s, i) => (
-
-            <tr key={i}>
-
-              <td
-                className="coin"
-                onClick={() => openMarket(s.symbol)}
-              >
-                {s.symbol}
-              </td>
-
-              <td>{s.signal}</td>
-
-              <td>{s.entry}</td>
-
-              <td>{s.tp1}</td>
-
-              <td>{s.tp2}</td>
-
-              <td>{s.sl}</td>
-
-            </tr>
-
-          ))}
 
         </tbody>
 
