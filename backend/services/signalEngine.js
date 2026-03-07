@@ -10,33 +10,27 @@ const url =
 
 const response = await axios.get(url,{
 headers:{
-"User-Agent":"Mozilla/5.0",
-"Accept":"application/json"
-},
-timeout:10000
+"User-Agent":"Mozilla/5.0"
+}
 });
 
-const data = response.data;
+const data=response.data;
 
-if(!Array.isArray(data)){
-return null;
-}
+const closes=data.map(c=>parseFloat(c[4]));
 
-const closes = data.map(c => parseFloat(c[4]));
+const price=closes[closes.length-1];
 
-const price = closes[closes.length-1];
-
-const ema50 = ti.EMA.calculate({
+const ema50=ti.EMA.calculate({
 period:50,
 values:closes
 }).slice(-1)[0];
 
-const ema200 = ti.EMA.calculate({
+const ema200=ti.EMA.calculate({
 period:200,
 values:closes
 }).slice(-1)[0];
 
-const rsi = ti.RSI.calculate({
+const rsi=ti.RSI.calculate({
 period:14,
 values:closes
 }).slice(-1)[0];
@@ -47,7 +41,6 @@ let entry=price;
 let tp1=price;
 let tp2=price;
 let sl=price;
-
 
 
 if(ema50>ema200 && rsi<60){
@@ -82,9 +75,9 @@ sl:Number(sl.toFixed(4))
 
 };
 
-}catch(error){
+}catch(err){
 
-console.log("Signal error:",error.message);
+console.log("Signal error:",err.message);
 
 return null;
 
@@ -92,6 +85,4 @@ return null;
 
 }
 
-module.exports={
-generateSignal
-};
+module.exports={generateSignal};
