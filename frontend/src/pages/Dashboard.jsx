@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-function Dashboard() {
+function Dashboard(){
 
 const [signals,setSignals] = useState([]);
 const navigate = useNavigate();
@@ -20,11 +20,16 @@ return ()=>clearInterval(interval);
 },[]);
 
 
+
 const loadSignals = async ()=>{
 
 try{
 
 const res = await axios.get("https://ftas.onrender.com/api/signals");
+
+console.log("API response:",res.data);
+
+if(Array.isArray(res.data)){
 
 const sorted = res.data.sort((a,b)=>{
 return a.symbol.localeCompare(b.symbol);
@@ -32,13 +37,22 @@ return a.symbol.localeCompare(b.symbol);
 
 setSignals(sorted);
 
+}else{
+
+console.log("API returned error:",res.data);
+setSignals([]);
+
+}
+
 }catch(err){
 
-console.log(err);
+console.log("Fetch error:",err);
+setSignals([]);
 
 }
 
 };
+
 
 
 const openMarket=(symbol)=>{
@@ -48,6 +62,7 @@ navigate("/coin/"+symbol);
 };
 
 
+
 return(
 
 <div className="container">
@@ -55,6 +70,7 @@ return(
 <h2 style={{marginBottom:"20px"}}>
 Live Trading Signals
 </h2>
+
 
 <table className="signals-table">
 
@@ -71,9 +87,20 @@ Live Trading Signals
 
 </thead>
 
+
 <tbody>
 
-{signals.map((s,i)=>(
+{signals.length === 0 ? (
+
+<tr>
+<td colSpan="6" style={{textAlign:"center"}}>
+No signals available
+</td>
+</tr>
+
+) : (
+
+signals.map((s,i)=>(
 
 <tr key={i}>
 
@@ -81,18 +108,26 @@ Live Trading Signals
 className="coin"
 onClick={()=>openMarket(s.symbol)}
 >
+
 {s.symbol}
+
 </td>
 
 <td>{s.signal}</td>
+
 <td>{s.entry}</td>
+
 <td>{s.tp1}</td>
+
 <td>{s.tp2}</td>
+
 <td>{s.sl}</td>
 
 </tr>
 
-))}
+))
+
+)}
 
 </tbody>
 
