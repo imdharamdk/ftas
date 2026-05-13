@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { CheckCircle2, ShieldCheck } from "lucide-react";
-import { deliverySignals, proofMetrics, valuePillars } from "@/data/content";
+import Link from "next/link";
+import { CheckCircle2, Quote, ShieldCheck } from "lucide-react";
+import { deliverySignals, proofMetrics, testimonials, valuePillars } from "@/data/content";
 import { Reveal } from "./Reveal";
 import { SectionIntro } from "./SectionIntro";
 
@@ -70,6 +71,32 @@ export function WhyFTASSection() {
             <p className="mt-3 text-sm leading-6 text-slate-400">{signal.description}</p>
           </article>
         ))}
+      </Reveal>
+
+      <Reveal className="mt-10">
+        <div className="mb-5 flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <h3 className="display-title text-2xl font-semibold text-white">Trusted by product and operations teams.</h3>
+            <p className="mt-2 text-sm text-slate-300">
+              Client feedback snapshots from automation and infrastructure transformation projects.
+            </p>
+          </div>
+          <Link href="/contact" className="text-sm font-semibold text-cyan-50 hover:text-cyan-100">
+            Talk to FTAS
+          </Link>
+        </div>
+        <div className="grid gap-4 lg:grid-cols-3">
+          {testimonials.map((item) => (
+            <article key={item.quote} className="premium-card p-5">
+              <Quote className="h-5 w-5 text-cyan-100/65" />
+              <p className="mt-4 text-sm leading-7 text-slate-200">"{item.quote}"</p>
+              <div className="mt-4 border-t border-white/10 pt-3">
+                <div className="text-sm font-semibold text-white">{item.name}</div>
+                <div className="text-xs text-cyan-100/65">{item.role}</div>
+              </div>
+            </article>
+          ))}
+        </div>
       </Reveal>
     </section>
   );
