@@ -62,67 +62,89 @@ export type ProcessStep = {
   Icon: LucideIcon;
 };
 
+export type PricingPlan = {
+  name: string;
+  price: string;
+  cadence: string;
+  tagline: string;
+  idealFor: string;
+  highlight?: string;
+  features: string[];
+};
+
+export type Testimonial = {
+  quote: string;
+  name: string;
+  role: string;
+};
+
+export type RoadmapSignal = {
+  title: string;
+  detail: string;
+  stage: string;
+};
+
 export const services: Service[] = [
   {
     title: "AI Automation",
     description:
-      "Custom AI workflows, process intelligence, API integrations, and automation layers that reduce repetitive operations.",
+      "Automate approvals, triage, alerts, and recurring operations with AI-assisted workflow routing and API orchestration.",
     signal: "Autonomous Ops",
     Icon: Bot,
   },
   {
-    title: "Web Development",
+    title: "Web Platforms",
     description:
-      "Fast, secure, responsive digital products built for portals, startups, service platforms, and internal systems.",
-    signal: "Experience Layer",
+      "Build secure product-grade portals, admin systems, and customer interfaces that feel fast, modern, and reliable.",
+    signal: "Product Experience",
     Icon: Code2,
   },
   {
     title: "Cloud Infrastructure",
     description:
-      "Deployment architecture, cloud configuration, monitoring, backup flows, and reliable digital infrastructure.",
-    signal: "Elastic Systems",
+      "Design and run resilient cloud environments with deployment pipelines, observability, backup strategy, and uptime guardrails.",
+    signal: "Elastic Runtime",
     Icon: CloudCog,
   },
   {
-    title: "Linux & Server Solutions",
+    title: "Linux & Server Operations",
     description:
-      "Linux environments, server hardening, hosting operations, uptime workflows, and technical administration.",
+      "Harden Linux hosts, optimize workloads, and maintain stable production environments with operational discipline.",
     signal: "Core Compute",
     Icon: ServerCog,
   },
   {
-    title: "Software Maintenance",
+    title: "Software Support",
     description:
-      "Operational support, issue resolution, upgrades, performance care, and continuity for active software systems.",
+      "Maintain and improve live systems through issue response, release care, incident handling, and continuity workflows.",
     signal: "Lifecycle Care",
     Icon: Headset,
   },
   {
-    title: "Computer Consultancy",
+    title: "Technology Consultancy",
     description:
-      "Technology guidance for systems, tooling, architecture, process improvement, and business digitization.",
-    signal: "Decision Intel",
+      "Get architecture and implementation guidance for scale, performance, security, tooling, and digital process modernization.",
+    signal: "Decision Intelligence",
     Icon: BrainCircuit,
   },
   {
-    title: "Web Portals",
+    title: "Portal Ecosystems",
     description:
-      "Custom portals for customers, staff, operations, reporting, service delivery, and digital collaboration.",
+      "Unify customer, operations, and internal workflows through custom web portals with integrated automation.",
     signal: "Portal Mesh",
     Icon: Globe2,
   },
   {
-    title: "Telecommunications",
+    title: "Telecom-Integrated Systems",
     description:
-      "Communication technology support, connectivity workflows, telecom-aligned systems, and infrastructure consulting.",
+      "Connect communication channels, service operations, and infrastructure tooling for responsive digital support.",
     signal: "Signal Fabric",
     Icon: RadioTower,
   },
   {
     title: "Digital Transformation",
     description:
-      "Modernization programs that combine AI, automation, infrastructure, and practical software engineering.",
+      "Modernize legacy operations into scalable digital systems by combining AI, infrastructure, and practical engineering.",
     signal: "Future Shift",
     Icon: Layers3,
   },
@@ -133,25 +155,25 @@ export const timeline: TimelineItem[] = [
     year: "01",
     title: "MSME Foundation",
     description:
-      "FTAS operates as a registered MSME technology company with a practical focus on business-ready digital systems.",
+      "FTAS operates as a registered MSME with a clear mandate: build dependable digital systems for ambitious businesses.",
   },
   {
     year: "02",
     title: "Automation Lab",
     description:
-      "AI workflows, business automation, and support systems are designed as repeatable infrastructure, not one-off tools.",
+      "Workflow automation and AI decision layers are engineered as maintainable systems, not isolated scripts.",
   },
   {
     year: "03",
-    title: "Infrastructure Layer",
+    title: "Fintech Infrastructure Track",
     description:
-      "Cloud, Linux, portals, telecom, and maintenance services connect into a single intelligent operating model.",
+      "Cloud, Linux, portals, support, and telemetry are delivered as one cohesive infrastructure stack.",
   },
   {
     year: "04",
-    title: "R&D Pipeline",
+    title: "R&D to Product Pipeline",
     description:
-      "Research and development turns emerging technologies into practical systems for next-generation companies.",
+      "Experiments are validated and translated into production-ready capabilities that drive measurable outcomes.",
   },
 ];
 
@@ -164,75 +186,75 @@ export const techModules: TechModule[] = [
   { name: "PHP", layer: "Web Backend", tone: "indigo" },
   { name: "Cloud", layer: "Infrastructure Fabric", tone: "cyan" },
   { name: "AI APIs", layer: "Cognitive Layer", tone: "purple" },
-  { name: "Automation Systems", layer: "Workflow Grid", tone: "green" },
+  { name: "Automation", layer: "Workflow Mesh", tone: "green" },
 ];
 
 export const rdPipelines = [
   {
     title: "AI Systems",
-    detail: "Model-assisted workflows, intelligent routing, and contextual business automation.",
+    detail: "Model-assisted routing, intelligent decision support, and operational copilots.",
     Icon: BrainCircuit,
   },
   {
     title: "Automation Workflows",
-    detail: "Signals, triggers, actions, human approvals, and operational observability.",
+    detail: "Signals, triggers, actions, human checkpoints, and reliability instrumentation.",
     Icon: Workflow,
   },
   {
     title: "Intelligent Infrastructure",
-    detail: "Cloud, Linux, server operations, portals, and secure support cycles.",
+    detail: "Cloud, Linux, portals, monitoring, and secure support pipelines for continuous delivery.",
     Icon: DatabaseZap,
   },
   {
     title: "Innovation Pipelines",
-    detail: "Research loops that convert experiments into stable production systems.",
+    detail: "Rapid prototyping loops that mature into stable enterprise-grade platform modules.",
     Icon: Network,
   },
 ];
 
 export const visionSignals = [
-  "AI-powered business infrastructure",
-  "Intelligent automation across daily operations",
-  "Next-generation digital ecosystems",
-  "Secure, scalable systems for ambitious MSMEs",
-  "Research-led software and infrastructure innovation",
+  "AI-guided operating intelligence",
+  "Autonomous workflows with human governance",
+  "Secure multi-product fintech architecture",
+  "Scalable systems for high-growth teams",
+  "Research-to-production delivery cadence",
 ];
 
 export const trustSignals = [
-  { label: "AI", value: "Automation" },
-  { label: "Cloud", value: "Infrastructure" },
-  { label: "R&D", value: "Innovation" },
-  { label: "MSME", value: "Registered" },
-  { label: "Ops", value: "Support" },
+  { label: "Compliance", value: "Security-first" },
+  { label: "Automation", value: "AI-native" },
+  { label: "Cloud", value: "Scalable" },
+  { label: "Delivery", value: "Product-grade" },
+  { label: "Support", value: "Continuity" },
 ];
 
 export const proofMetrics = [
   { label: "Service domains", value: "09" },
-  { label: "Operating layers", value: "04" },
-  { label: "Support model", value: "24/7-ready" },
-  { label: "Build posture", value: "AI-first" },
+  { label: "Core delivery layers", value: "04" },
+  { label: "Infrastructure posture", value: "99.9% ready" },
+  { label: "Automation focus", value: "AI-first" },
 ];
 
 export const valuePillars: IconContent[] = [
   {
-    title: "One technical partner",
+    title: "One accountable technology partner",
     description:
-      "FTAS connects web systems, automation, cloud, Linux, portals, telecom, maintenance, and consulting under one accountable technology function.",
-    meta: "Unified delivery",
+      "From frontend portals to cloud operations, FTAS aligns strategy, implementation, and maintenance under a single execution model.",
+    meta: "Unified ownership",
     Icon: Blocks,
   },
   {
-    title: "AI where it improves operations",
+    title: "AI that improves business throughput",
     description:
-      "Automation is scoped around practical business workflows, not hype: intake, routing, support, reporting, alerts, and system assistance.",
-    meta: "Useful intelligence",
+      "Automation is applied to real operational bottlenecks like ticket intake, routing, SLA handling, and status intelligence.",
+    meta: "Practical intelligence",
     Icon: BrainCircuit,
   },
   {
-    title: "Infrastructure-minded execution",
+    title: "Infrastructure-grade execution quality",
     description:
-      "Every interface, portal, and workflow is planned with uptime, monitoring, maintenance, security, backups, and future expansion in mind.",
-    meta: "Production posture",
+      "Systems are designed for resilience, observability, security, and growth so products can scale with confidence.",
+    meta: "Production mindset",
     Icon: ServerCog,
   },
 ];
@@ -241,36 +263,36 @@ export const processSteps: ProcessStep[] = [
   {
     step: "01",
     title: "Discover",
-    description: "Map the business workflow, users, infrastructure, existing software, risk areas, and automation opportunities.",
-    output: "System blueprint",
+    description: "Audit workflows, users, systems, data boundaries, and automation opportunities.",
+    output: "Delivery blueprint",
     Icon: ScanLine,
   },
   {
     step: "02",
     title: "Architect",
-    description: "Define the stack, cloud/server model, integrations, data flows, security posture, and maintenance plan.",
-    output: "Technical architecture",
+    description: "Define stack choices, cloud model, integration strategy, and security-operational controls.",
+    output: "Solution architecture",
     Icon: GitBranch,
   },
   {
     step: "03",
     title: "Build",
-    description: "Develop portals, websites, dashboards, APIs, automation workflows, and support tooling with clean implementation standards.",
-    output: "Production system",
+    description: "Develop portals, APIs, dashboards, and infrastructure modules with product-quality standards.",
+    output: "Production baseline",
     Icon: Code2,
   },
   {
     step: "04",
     title: "Automate",
-    description: "Connect AI APIs, triggers, notifications, approval flows, scheduled tasks, and operational intelligence layers.",
-    output: "Automated workflows",
+    description: "Attach AI logic, event triggers, approval flows, and telemetry-driven orchestration.",
+    output: "Autonomous workflows",
     Icon: Workflow,
   },
   {
     step: "05",
     title: "Operate",
-    description: "Maintain, improve, monitor, troubleshoot, document, and scale the platform as the business evolves.",
-    output: "Managed continuity",
+    description: "Run support, monitor system health, ship improvements, and scale platform capabilities.",
+    output: "Continuous reliability",
     Icon: Activity,
   },
 ];
@@ -278,26 +300,26 @@ export const processSteps: ProcessStep[] = [
 export const infrastructureLayers: IconContent[] = [
   {
     title: "Experience Layer",
-    description: "Websites, portals, dashboards, admin panels, and user-facing digital systems.",
+    description: "Web applications, portals, dashboards, and operator interfaces for teams and clients.",
     meta: "React / WordPress / PHP",
     Icon: Globe2,
   },
   {
     title: "Automation Layer",
-    description: "AI-assisted workflows, API connectors, approvals, notifications, and recurring operations.",
-    meta: "AI APIs / Workflow logic",
+    description: "AI workflows, rule engines, integrations, event logic, and process orchestration.",
+    meta: "AI APIs / Workflow engine",
     Icon: PlugZap,
   },
   {
     title: "Compute Layer",
-    description: "Linux servers, hosting, cloud infrastructure, storage, backups, and deployment environments.",
-    meta: "Linux / Cloud / Server",
+    description: "Cloud hosts, Linux servers, storage, deployment pipelines, and backup strategies.",
+    meta: "Cloud / Linux / Server",
     Icon: HardDrive,
   },
   {
     title: "Operations Layer",
-    description: "Maintenance, monitoring, support, improvements, telecom support, and continuity planning.",
-    meta: "Support / Monitoring",
+    description: "Monitoring, issue response, support operations, and lifecycle maintenance playbooks.",
+    meta: "Observability / Support",
     Icon: ShieldCheck,
   },
 ];
@@ -305,65 +327,174 @@ export const infrastructureLayers: IconContent[] = [
 export const automationWorkflow: IconContent[] = [
   {
     title: "Capture",
-    description: "Business signals enter through forms, portals, support requests, schedules, integrations, or manual triggers.",
+    description: "Collect events from forms, login actions, APIs, tickets, schedules, and partner systems.",
     meta: "Inputs",
     Icon: Target,
   },
   {
     title: "Understand",
-    description: "AI and rule-based logic classify intent, extract context, score priority, and route the request.",
+    description: "Apply AI and rules to classify context, assess urgency, and decide the right workflow path.",
     meta: "Intelligence",
     Icon: BrainCircuit,
   },
   {
     title: "Execute",
-    description: "Systems launch tasks, notify teams, update records, create follow-ups, and synchronize infrastructure actions.",
+    description: "Trigger jobs, update records, notify teams, create tasks, and synchronize connected tools.",
     meta: "Automation",
     Icon: ArrowRightLeft,
   },
   {
     title: "Observe",
-    description: "Dashboards and support processes track status, performance, exceptions, and improvement opportunities.",
+    description: "Track SLA health, system performance, response cycles, and quality improvements in real time.",
     meta: "Telemetry",
     Icon: LineChart,
+  },
+];
+
+export const productHighlights: IconContent[] = [
+  {
+    title: "Secure login and access governance",
+    description: "Role-based access, audit trails, and account controls protect customer and operations workflows.",
+    meta: "Identity",
+    Icon: LockKeyhole,
+  },
+  {
+    title: "Realtime analytics and KPI visibility",
+    description: "Live dashboards surface workload health, SLA trends, and operational performance metrics.",
+    meta: "Analytics",
+    Icon: LineChart,
+  },
+  {
+    title: "AI automation and workflow orchestration",
+    description: "Automatically route tasks, trigger actions, and manage cross-team operations at scale.",
+    meta: "Automation",
+    Icon: Workflow,
+  },
+  {
+    title: "Subscription and lifecycle support",
+    description: "Recurring plan workflows, retention insights, and customer journey checkpoints for growth.",
+    meta: "Subscriptions",
+    Icon: Layers3,
   },
 ];
 
 export const deliverySignals: IconContent[] = [
   {
     title: "Scalable foundations",
-    description: "Architecture choices are made for future traffic, integrations, automation depth, and operational complexity.",
+    description: "Architecture decisions are made for growth, integration depth, and future operational complexity.",
     Icon: Rocket,
   },
   {
     title: "Secure-by-default thinking",
-    description: "The system model includes access control, backups, server care, maintenance windows, and platform hardening.",
+    description: "Access boundaries, backups, server care, and hardening controls are part of every delivery.",
     Icon: LockKeyhole,
   },
   {
-    title: "Client-ready presentation",
-    description: "Projects are documented and structured so teams can understand, use, maintain, and confidently expand them.",
+    title: "Client-ready execution",
+    description: "Systems are structured, documented, and maintainable for internal teams and external stakeholders.",
     Icon: UserRoundCheck,
   },
   {
-    title: "Measurable improvements",
-    description: "FTAS focuses on cycle-time reduction, system reliability, digital clarity, and repeatable business execution.",
+    title: "Measurable business impact",
+    description: "FTAS optimizes throughput, reliability, visibility, and operational consistency over time.",
     Icon: Gauge,
   },
 ];
 
 export const caseStudySignals = [
-  { label: "Challenge", value: "Fragmented tools, manual support, weak visibility" },
-  { label: "FTAS build", value: "Portal + automation workflows + cloud/server support" },
-  { label: "Outcome", value: "Cleaner operations, faster response loops, scalable digital base" },
+  { label: "Challenge", value: "Manual support queues, fragmented tools, low visibility." },
+  { label: "FTAS platform", value: "Secure portal + workflow automation + infrastructure observability." },
+  { label: "Outcome", value: "Faster response loops, higher uptime confidence, scalable operations." },
+];
+
+export const pricingPlans: PricingPlan[] = [
+  {
+    name: "Launch",
+    price: "Pilot",
+    cadence: "plan",
+    tagline: "For early-stage teams building their first intelligent operations layer.",
+    idealFor: "Startup platforms and focused automation initiatives",
+    features: [
+      "Secure login + role controls",
+      "One automation pipeline with monitoring",
+      "Core dashboard with KPI tracking",
+      "Monthly performance review",
+    ],
+  },
+  {
+    name: "Scale",
+    price: "Growth",
+    cadence: "plan",
+    tagline: "For teams scaling product, operations, and customer service workflows.",
+    idealFor: "SMEs and growth-stage SaaS products",
+    highlight: "Most selected",
+    features: [
+      "Multi-workflow automation orchestration",
+      "Advanced analytics and alerting",
+      "Subscription lifecycle integrations",
+      "Priority support and optimization cadence",
+    ],
+  },
+  {
+    name: "Enterprise",
+    price: "Custom",
+    cadence: "architecture",
+    tagline: "For organizations requiring high-trust, multi-team fintech infrastructure.",
+    idealFor: "Complex operations, compliance-heavy products, and high scale",
+    features: [
+      "Dedicated architecture and security track",
+      "Cross-system integrations + data governance",
+      "SLA-driven support and incident response",
+      "Roadmap ownership with R&D enablement",
+    ],
+  },
+];
+
+export const testimonials: Testimonial[] = [
+  {
+    quote:
+      "FTAS converted fragmented operations into a unified platform with cleaner visibility and faster support execution.",
+    name: "Operations Director",
+    role: "Fintech services client",
+  },
+  {
+    quote:
+      "Their team delivered production-ready automation without unnecessary complexity, then stayed to optimize outcomes.",
+    name: "Product Lead",
+    role: "Digital lending platform",
+  },
+  {
+    quote:
+      "The combination of portal engineering and infrastructure reliability gave us confidence to scale subscriptions.",
+    name: "Founder",
+    role: "B2B SaaS startup",
+  },
+];
+
+export const futureRoadmap: RoadmapSignal[] = [
+  {
+    title: "AI Copilot for Operations",
+    detail: "Context-aware assistant for ticket triage, incident summaries, and action recommendations.",
+    stage: "In planning",
+  },
+  {
+    title: "Trading Intelligence Extensions",
+    detail: "Event-driven strategy signals and analytics workflows for future fintech product tracks.",
+    stage: "Research",
+  },
+  {
+    title: "Social Insight Layer",
+    detail: "Customer and market sentiment inputs routed into product and support decision systems.",
+    stage: "Exploration",
+  },
 ];
 
 export const footerLinks = [
   { label: "About", href: "#about" },
   { label: "Why FTAS", href: "#why-ftas" },
   { label: "Services", href: "#services" },
-  { label: "Process", href: "#process" },
-  { label: "R&D", href: "#rd" },
+  { label: "Pricing", href: "#pricing" },
+  { label: "Dashboard", href: "#infrastructure" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -376,12 +507,12 @@ export const socialLinks = [
 export const securitySignals = [
   {
     title: "Continuity",
-    description: "Maintenance cycles, monitoring, backups, and operational support.",
+    description: "Maintenance cadence, monitoring, backups, and structured support operations.",
     Icon: ShieldCheck,
   },
   {
     title: "Systems",
-    description: "Portals, infrastructure, communication layers, and connected workflows.",
+    description: "Connected infrastructure, workflows, communication layers, and observability.",
     Icon: Network,
   },
 ];

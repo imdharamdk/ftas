@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { BadgeCheck, CircuitBoard, Factory, FlaskConical } from "lucide-react";
 import { timeline } from "@/data/content";
 
@@ -18,18 +19,17 @@ export function AboutSection() {
             <BadgeCheck className="h-4 w-4" />
             About FTAS
           </div>
-          <h2 className="section-title">An MSME technology company built like an innovation lab.</h2>
+          <h2 className="section-title">A high-trust fintech technology partner built for modern digital operations.</h2>
           <p className="section-copy">
-            FTAS - Fintech Automated Solutions is focused on AI automation, web
-            development, cloud and server infrastructure, software support,
-            computer consultancy, web portals, telecommunications, and research
-            driven digital transformation.
+            FTAS combines product engineering, AI automation, cloud reliability,
+            and operational support into a unified SaaS delivery model for
+            fintech, service, and growth-stage businesses.
           </p>
           <div className="mt-8 grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
             {[
-              { label: "AI-powered", Icon: CircuitBoard },
-              { label: "Automation-focused", Icon: FlaskConical },
-              { label: "MSME registered", Icon: Factory },
+              { label: "AI-native automation", Icon: CircuitBoard },
+              { label: "Product + infrastructure", Icon: FlaskConical },
+              { label: "MSME registered company", Icon: Factory },
             ].map((item) => (
               <div
                 key={item.label}
@@ -40,6 +40,9 @@ export function AboutSection() {
               </div>
             ))}
           </div>
+          <Link href="/about" className="holo-button holo-button-secondary mt-6">
+            Explore Company Profile
+          </Link>
         </motion.div>
 
         <div className="relative">

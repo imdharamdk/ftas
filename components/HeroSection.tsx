@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
-import { ArrowRight, Cpu, Sparkles, Zap } from "lucide-react";
+import { ArrowRight, Cpu, ShieldCheck, Sparkles, Zap } from "lucide-react";
 import { trustSignals } from "@/data/content";
 import { MagneticButton } from "./MagneticButton";
 import { TerminalTicker } from "./TerminalTicker";
@@ -15,78 +15,87 @@ const ThreeAICore = dynamic(
   },
 );
 
+const SaaSPoints = [
+  "Secure login and role-based access control",
+  "Realtime analytics with automation alerts",
+  "Subscription-ready fintech operations stack",
+];
+
 export function HeroSection() {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen items-center overflow-hidden px-5 pb-16 pt-28 sm:px-8 lg:px-10 lg:pt-32"
+      className="relative flex min-h-[calc(100vh-6rem)] items-center overflow-hidden px-5 pb-16 pt-12 sm:px-8 lg:px-10"
     >
       <div className="absolute inset-0 vertical-fade">
-        <div className="absolute left-1/2 top-24 h-[42rem] w-[42rem] -translate-x-1/2 rounded-full border border-cyan-200/10 radial-mask" />
-        <div className="absolute left-1/2 top-16 h-[28rem] w-[28rem] -translate-x-1/2 rounded-full border border-violet-300/10 radial-mask" />
+        <div className="absolute left-1/2 top-16 h-[42rem] w-[42rem] -translate-x-1/2 rounded-full border border-cyan-200/10 radial-mask" />
+        <div className="absolute left-1/2 top-6 h-[28rem] w-[28rem] -translate-x-1/2 rounded-full border border-violet-300/10 radial-mask" />
         <div className="scanline absolute inset-x-0 top-10 h-44 animate-scan-line opacity-60" />
       </div>
 
-      <div className="mx-auto grid w-full max-w-7xl items-center gap-14 lg:grid-cols-[1fr_0.9fr]">
+      <div className="mx-auto grid w-full max-w-7xl items-center gap-14 lg:grid-cols-[1fr_0.95fr]">
         <div className="relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.75, ease: "easeOut", delay: 0.55 }}
+            transition={{ duration: 0.75, ease: "easeOut", delay: 0.35 }}
             className="section-kicker"
           >
             <Cpu className="h-4 w-4" />
-            MSME technology company
+            AI-driven fintech SaaS platform
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.85, ease: "easeOut", delay: 0.68 }}
+            transition={{ duration: 0.85, ease: "easeOut", delay: 0.48 }}
           >
-            <h1 className="mt-7 text-6xl font-black leading-none text-white sm:text-8xl lg:text-[8.5rem]">
-              FTAS
-            </h1>
-            <p className="mt-4 text-2xl font-semibold text-cyan-50 sm:text-4xl">
-              Fintech Automated Solutions
+            <p className="mt-6 text-sm font-semibold uppercase tracking-[0.2em] text-cyan-100/70">
+              FTAS - Fintech Automated Solutions
             </p>
-            <p className="mt-6 max-w-2xl text-3xl font-semibold leading-tight text-hologram sm:text-5xl">
-              Engineering Intelligent Digital Infrastructure
+            <h1 className="display-title mt-5 max-w-3xl text-5xl font-bold leading-tight text-white sm:text-6xl xl:text-7xl">
+              Build A Trusted Fintech Operating System With AI Automation.
+            </h1>
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300 sm:text-xl">
+              FTAS helps teams launch secure products, orchestrate workflows, and run high-confidence infrastructure with enterprise-grade SaaS discipline.
             </p>
           </motion.div>
-
-          <motion.p
-            initial={{ opacity: 0, y: 22 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.75, ease: "easeOut", delay: 0.86 }}
-            className="mt-6 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg"
-          >
-            FTAS combines AI, automation, cloud infrastructure, web systems,
-            telecommunications, support, and research into future-ready digital
-            operating systems for modern businesses.
-          </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.75, ease: "easeOut", delay: 1 }}
+            transition={{ duration: 0.75, ease: "easeOut", delay: 0.66 }}
+            className="mt-7 grid gap-2"
+          >
+            {SaaSPoints.map((point) => (
+              <div key={point} className="flex items-center gap-2 text-sm text-slate-200">
+                <ShieldCheck className="h-4 w-4 text-signal" />
+                <span>{point}</span>
+              </div>
+            ))}
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 22 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.75, ease: "easeOut", delay: 0.82 }}
             className="mt-9 flex flex-col gap-3 sm:flex-row"
           >
-            <MagneticButton href="#contact">
+            <MagneticButton href="/contact#demo">
               <Zap className="h-4 w-4" />
-              Initialize Consultation
+              Request Live Demo
               <ArrowRight className="h-4 w-4" />
             </MagneticButton>
-            <MagneticButton href="#services" variant="secondary">
+            <MagneticButton href="/pricing" variant="secondary">
               <Sparkles className="h-4 w-4" />
-              Explore Systems
+              Compare Plans
             </MagneticButton>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut", delay: 1.08 }}
+            transition={{ duration: 0.7, ease: "easeOut", delay: 0.92 }}
             className="max-w-2xl"
           >
             <TerminalTicker />
@@ -95,8 +104,8 @@ export function HeroSection() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 1.16 }}
-            className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-5"
+            transition={{ duration: 0.8, delay: 1.08 }}
+            className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-5"
           >
             {trustSignals.map((signal) => (
               <div
@@ -121,17 +130,17 @@ export function HeroSection() {
 function HeroLabVisual() {
   const rings = [0, 1, 2];
   const nodes = [
-    { label: "AI Core", x: "15%", y: "10%" },
-    { label: "Cloud Control", x: "64%", y: "10%" },
-    { label: "Portal Mesh", x: "9%", y: "57%" },
-    { label: "Linux Grid", x: "72%", y: "55%" },
+    { label: "Auth Hub", x: "14%", y: "9%" },
+    { label: "Analytics", x: "66%", y: "11%" },
+    { label: "Automation", x: "8%", y: "58%" },
+    { label: "Billing", x: "72%", y: "58%" },
   ];
 
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.94, y: 28 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
-      transition={{ duration: 1, ease: "easeOut", delay: 0.78 }}
+      transition={{ duration: 1, ease: "easeOut", delay: 0.64 }}
       className="relative mx-auto aspect-square w-full max-w-[36rem]"
     >
       <div className="absolute inset-0 rounded-full border border-cyan-200/15 radial-mask" />
@@ -151,7 +160,7 @@ function HeroLabVisual() {
         </motion.div>
       ))}
 
-      <div className="absolute left-[10%] top-[18%] z-0 aspect-square w-[54%] overflow-hidden rounded-full sm:left-[11%] sm:top-[16%] sm:w-[55%]">
+      <div className="absolute left-[10%] top-[16%] z-0 aspect-square w-[56%] overflow-hidden rounded-full">
         <ThreeAICore />
       </div>
 
@@ -163,9 +172,9 @@ function HeroLabVisual() {
         >
           <div className="absolute inset-0 fine-grid opacity-35" />
           <div className="relative text-center">
-            <div className="text-xs text-cyan-100/70">FTAS CORE</div>
-            <div className="mt-2 text-3xl font-black text-white sm:text-4xl">AI</div>
-            <SoundWave />
+            <div className="text-xs text-cyan-100/70">LIVE OPS</div>
+            <div className="mt-2 text-3xl font-black text-white sm:text-4xl">99.94%</div>
+            <div className="mt-1 text-[11px] font-semibold uppercase text-signal">uptime</div>
           </div>
         </motion.div>
       </div>
@@ -183,21 +192,10 @@ function HeroLabVisual() {
         </motion.div>
       ))}
 
-      <div className="absolute left-0 top-[41%] z-30 hidden w-40 -translate-y-1/2 rounded-lg border border-cyan-200/15 bg-black/70 p-3 shadow-2xl backdrop-blur-xl sm:block">
-        <div className="mb-3 text-xs font-semibold uppercase text-cyan-100/60">Command Route</div>
-        {["signal", "logic", "deploy"].map((item, index) => (
-          <div key={item} className="mb-2 flex items-center gap-2 text-xs text-slate-300">
-            <span className="status-dot" />
-            <span>{item}</span>
-            <span className="ml-auto text-cyan-100/45">0{index + 1}</span>
-          </div>
-        ))}
-      </div>
-
-      <div className="absolute bottom-0 left-1/2 z-30 w-[76%] -translate-x-1/2 rounded-lg border border-cyan-200/15 bg-black/70 p-4 shadow-2xl backdrop-blur-xl sm:bottom-3">
+      <div className="absolute bottom-0 left-1/2 z-30 w-[78%] -translate-x-1/2 rounded-lg border border-cyan-200/15 bg-black/70 p-4 shadow-2xl backdrop-blur-xl sm:bottom-3">
         <div className="mb-3 flex items-center justify-between text-xs text-slate-400">
-          <span>System Pulse</span>
-          <span className="text-signal">Online</span>
+          <span>Realtime Throughput</span>
+          <span className="text-signal">+31% this month</span>
         </div>
         <div className="grid grid-cols-12 items-end gap-1">
           {Array.from({ length: 24 }, (_, index) => (
@@ -214,22 +212,5 @@ function HeroLabVisual() {
         </div>
       </div>
     </motion.div>
-  );
-}
-
-function SoundWave() {
-  return (
-    <div className="mx-auto mt-4 flex h-10 w-28 items-center justify-center gap-1">
-      {Array.from({ length: 13 }, (_, index) => (
-        <span
-          key={index}
-          className="h-full w-1 rounded-sm bg-cyan-200"
-          style={{
-            animation: `signal-wave ${1.4 + (index % 4) * 0.16}s ease-in-out infinite`,
-            animationDelay: `${index * 0.06}s`,
-          }}
-        />
-      ))}
-    </div>
   );
 }

@@ -3,9 +3,9 @@
 import { useEffect, useState } from "react";
 
 const lines = [
-  "ftas.init(ai + automation + infrastructure)",
-  "workflow.route -> cloud.deploy -> support.observe",
-  "status: intelligent digital infrastructure online",
+  "ftas.boot(platform: auth + analytics + automation + billing)",
+  "event.ingest -> ai.route -> workflow.execute -> sla.observe",
+  "status: enterprise fintech infrastructure online",
 ];
 
 export function TerminalTicker() {
