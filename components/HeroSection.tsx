@@ -81,14 +81,14 @@ export function HeroSection() {
             transition={{ duration: 0.75, ease: "easeOut", delay: 0.82 }}
             className="mt-9 flex flex-col gap-3 sm:flex-row"
           >
-            <MagneticButton href="/contact#demo">
+            <MagneticButton href="/command-center">
               <Zap className="h-4 w-4" />
-              Request Live Demo
+              Launch AI Command Center
               <ArrowRight className="h-4 w-4" />
             </MagneticButton>
-            <MagneticButton href="/pricing" variant="secondary">
+            <MagneticButton href="/api-management" variant="secondary">
               <Sparkles className="h-4 w-4" />
-              Compare Plans
+              Configure Providers
             </MagneticButton>
           </motion.div>
 

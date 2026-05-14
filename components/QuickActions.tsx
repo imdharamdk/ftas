@@ -8,6 +8,7 @@ const actions = [
     href: "/contact#demo",
     label: "Request Demo",
     Icon: Rocket,
+    external: false,
   },
   {
     href: "https://wa.me/910000000000",
@@ -19,6 +20,7 @@ const actions = [
     href: "/faq",
     label: "Support",
     Icon: CircleHelp,
+    external: false,
   },
 ] as const;
 

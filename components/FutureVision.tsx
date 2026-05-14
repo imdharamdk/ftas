@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { Orbit, Sparkles } from "lucide-react";
-import { visionSignals } from "@/data/content";
+import { futureRoadmap, visionSignals } from "@/data/content";
 
 export function FutureVision() {
   return (
@@ -23,13 +24,21 @@ export function FutureVision() {
               Future vision
             </div>
             <h2 className="mt-6 max-w-4xl text-4xl font-black leading-tight text-white sm:text-6xl">
-              FTAS is building the future of intelligent digital infrastructure.
+              FTAS is evolving into a full-stack AI fintech SaaS ecosystem.
             </h2>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-              The direction is clear: AI systems that assist decision-making,
-              automation that removes operational drag, and infrastructure that
-              gives businesses a stronger digital nervous system.
+              The roadmap includes copilots, intelligent signal processing, and
+              market-aware workflow modules that keep enterprise teams adaptive
+              without sacrificing trust and control.
             </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link href="/features" className="holo-button holo-button-primary">
+                Explore Product Roadmap
+              </Link>
+              <Link href="/contact#demo" className="holo-button holo-button-secondary">
+                Book Strategy Session
+              </Link>
+            </div>
           </motion.div>
 
           <motion.div
@@ -78,6 +87,18 @@ export function FutureVision() {
               <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-cyan-200" />
               {signal}
             </div>
+          ))}
+        </div>
+
+        <div className="relative mt-10 grid gap-4 lg:grid-cols-3">
+          {futureRoadmap.map((item) => (
+            <article key={item.title} className="premium-card p-5">
+              <div className="inline-flex rounded-md border border-cyan-200/30 bg-cyan-200/10 px-2.5 py-1 text-xs font-semibold text-cyan-50">
+                {item.stage}
+              </div>
+              <h3 className="mt-3 text-lg font-semibold text-white">{item.title}</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-300">{item.detail}</p>
+            </article>
           ))}
         </div>
       </div>

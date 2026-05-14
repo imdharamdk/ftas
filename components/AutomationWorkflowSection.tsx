@@ -2,7 +2,8 @@
 
 import { motion } from "framer-motion";
 import { Workflow } from "lucide-react";
-import { automationWorkflow } from "@/data/content";
+import Link from "next/link";
+import { automationWorkflow, productHighlights } from "@/data/content";
 import { Reveal } from "./Reveal";
 import { SectionIntro } from "./SectionIntro";
 
@@ -13,7 +14,7 @@ export function AutomationWorkflowSection() {
         <SectionIntro
           eyebrow="AI automation workflow"
           title="From business signal to automated execution."
-          copy="FTAS designs automation systems around measurable workflows: capture the trigger, understand context, execute the next action, and observe the result."
+          copy="FTAS designs SaaS automation flows around measurable lifecycle steps: capture events, classify context, execute actions, and monitor outcomes."
           Icon={Workflow}
         />
 
@@ -48,8 +49,24 @@ export function AutomationWorkflowSection() {
               </motion.article>
             ))}
           </div>
+          <Link href="/features" className="holo-button holo-button-secondary mt-5 w-full">
+            Explore Full Feature Library
+          </Link>
         </Reveal>
       </div>
+
+      <Reveal className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        {productHighlights.map((item) => (
+          <article key={item.title} className="premium-card p-5">
+            <div className="grid h-10 w-10 place-items-center rounded-lg border border-cyan-200/25 bg-cyan-200/10 text-cyan-100">
+              <item.Icon className="h-5 w-5" />
+            </div>
+            <div className="mt-3 text-xs font-semibold uppercase text-cyan-100/55">{item.meta}</div>
+            <h3 className="mt-2 text-lg font-semibold text-white">{item.title}</h3>
+            <p className="mt-2 text-sm leading-6 text-slate-300">{item.description}</p>
+          </article>
+        ))}
+      </Reveal>
     </section>
   );
 }

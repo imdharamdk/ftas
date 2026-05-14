@@ -12,13 +12,13 @@ import { ThemeToggle } from "./ThemeToggle";
 
 const navItems = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Services", href: "/services" },
-  { label: "Features", href: "/features" },
-  { label: "Dashboard", href: "/dashboard" },
-  { label: "Pricing", href: "/pricing" },
-  { label: "Blog", href: "/blog" },
-  { label: "FAQ", href: "/faq" },
+  { label: "AI Command", href: "/command-center" },
+  { label: "Org Dashboard", href: "/organization-dashboard" },
+  { label: "Workflow", href: "/workflow-visualizer" },
+  { label: "Admin", href: "/admin-panel" },
+  { label: "API Mgmt", href: "/api-management" },
+  { label: "Fintech", href: "/fintech-dashboard" },
+  { label: "Knowledge", href: "/knowledge-base" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -55,8 +55,8 @@ export function Navigation() {
         <Link href="/" aria-label="FTAS home" className="flex shrink-0 items-center gap-3">
           <LogoMark compact />
           <div className="hidden lg:block">
-            <div className="text-sm font-semibold text-white">FTAS Platform</div>
-            <div className="text-xs text-cyan-100/70">Fintech Automated Solutions</div>
+            <div className="text-sm font-semibold text-white">FTAS AI Ecosystem</div>
+            <div className="text-xs text-cyan-100/70">Enterprise Multi-Agent Operating System</div>
           </div>
         </Link>
 
@@ -86,7 +86,7 @@ export function Navigation() {
             <input
               value={search}
               onChange={(event) => setSearch(event.target.value)}
-              placeholder="Search services, blog, FAQ..."
+              placeholder="Search agents, workflows, docs..."
               className="w-52 bg-transparent text-xs text-white outline-none placeholder:text-slate-500 xl:w-64"
             />
           </div>
@@ -100,9 +100,9 @@ export function Navigation() {
           <Link href="/login" className="hidden min-h-10 items-center rounded-md border border-white/10 bg-white/5 px-3 text-xs font-semibold text-slate-100 transition hover:border-cyan-200/40 hover:text-white lg:inline-flex">
             Login
           </Link>
-          <Link href="/contact#demo" className="hidden min-h-10 items-center gap-2 rounded-md border border-cyan-200/35 bg-cyan-200/15 px-3 text-xs font-semibold text-cyan-50 shadow-neon transition hover:border-cyan-100/80 hover:bg-cyan-200/20 sm:inline-flex">
+          <Link href="/command-center" className="hidden min-h-10 items-center gap-2 rounded-md border border-cyan-200/35 bg-cyan-200/15 px-3 text-xs font-semibold text-cyan-50 shadow-neon transition hover:border-cyan-100/80 hover:bg-cyan-200/20 sm:inline-flex">
             <ShieldCheck className="h-4 w-4" />
-            Request Demo
+            Launch Ecosystem
             <ArrowUpRight className="h-4 w-4" />
           </Link>
           <button
@@ -164,8 +164,8 @@ export function Navigation() {
               <Link href="/login" onClick={() => setOpen(false)} className="holo-button holo-button-secondary min-h-10 px-4 py-0 text-xs">
                 Login
               </Link>
-              <Link href="/contact#demo" onClick={() => setOpen(false)} className="holo-button holo-button-primary min-h-10 px-4 py-0 text-xs">
-                Request Demo
+              <Link href="/command-center" onClick={() => setOpen(false)} className="holo-button holo-button-primary min-h-10 px-4 py-0 text-xs">
+                Launch Ecosystem
               </Link>
             </div>
           </motion.div>

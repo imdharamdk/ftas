@@ -20,6 +20,21 @@ const labelMap: Record<string, string> = {
   "forgot-password": "Forgot Password",
   profile: "Profile",
   search: "Search",
+  "command-center": "AI Command Center",
+  "organization-dashboard": "Organization Dashboard",
+  "workflow-visualizer": "AI Workflow Visualizer",
+  "admin-panel": "Admin Panel",
+  "api-management": "API Management",
+  "ai-chat-workspace": "AI Chat Workspace",
+  "fintech-dashboard": "Fintech Dashboard",
+  "ai-studio": "AI Studio",
+  "voice-console": "Voice Console",
+  "ocr-workspace": "OCR Workspace",
+  "3d-studio": "3D Studio",
+  "media-studio": "Media Studio",
+  "knowledge-base": "Knowledge Base",
+  "security-center": "Security Center",
+  settings: "Settings",
 };
 
 export function Breadcrumbs() {

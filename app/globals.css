@@ -364,6 +364,87 @@ textarea {
     linear-gradient(90deg, transparent, rgba(0, 231, 255, 0.4), rgba(138, 92, 255, 0.35), transparent);
 }
 
+.markdown-content h2,
+.markdown-content h3 {
+  margin-top: 1.25rem;
+  color: white;
+}
+
+.markdown-content p,
+.markdown-content li {
+  color: rgb(203 213 225);
+  line-height: 1.8;
+}
+
+.markdown-content ul,
+.markdown-content ol {
+  margin-top: 0.8rem;
+  padding-left: 1.4rem;
+}
+
+.markdown-content code {
+  border-radius: 0.35rem;
+  background: rgba(148, 163, 184, 0.14);
+  padding: 0.1rem 0.35rem;
+  color: rgb(224 242 254);
+}
+
+.markdown-content pre {
+  margin-top: 1rem;
+  overflow-x: auto;
+  border-radius: 0.6rem;
+  border: 1px solid rgba(56, 189, 248, 0.24);
+  background: rgba(2, 6, 23, 0.92);
+  padding: 1rem;
+}
+
+.markdown-content pre code {
+  background: transparent;
+  padding: 0;
+}
+
+.rdp-root {
+  --rdp-accent-color: #00e7ff;
+  --rdp-accent-background-color: rgba(0, 231, 255, 0.14);
+  --rdp-day_button-border-radius: 0.45rem;
+  color: rgb(226 232 240);
+}
+
+.rdp-day_button:hover {
+  background: rgba(0, 231, 255, 0.12);
+}
+
+.light .rdp-root {
+  --rdp-accent-color: #0076db;
+  --rdp-accent-background-color: rgba(0, 118, 219, 0.12);
+  color: #1f3c5a;
+}
+
+.react-flow__node {
+  border-radius: 0.6rem;
+  border: 1px solid rgba(0, 231, 255, 0.2);
+  background: rgba(8, 14, 24, 0.84);
+  color: #ecfeff;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(12px);
+}
+
+.react-flow__edge-path {
+  stroke: rgba(0, 231, 255, 0.72);
+}
+
+.react-flow__controls {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(8, 14, 24, 0.82);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.32);
+}
+
+.react-flow__controls-button {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: transparent;
+  color: #dbeafe;
+}
+
 @keyframes holo-shift {
   0%,
   100% {

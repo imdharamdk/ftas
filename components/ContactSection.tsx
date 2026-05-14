@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Mail, MapPin, Send, TerminalSquare } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, CalendarDays, Mail, MapPin, Send, TerminalSquare } from "lucide-react";
 
 export function ContactSection() {
   const [sent, setSent] = useState(false);
@@ -20,11 +21,10 @@ export function ContactSection() {
             <TerminalSquare className="h-4 w-4" />
             Contact
           </div>
-          <h2 className="section-title">Start a new intelligent infrastructure build.</h2>
+          <h2 className="section-title">Start your FTAS onboarding and request a live SaaS demo.</h2>
           <p className="section-copy">
-            Share the system you want to create, modernize, automate, or support.
-            FTAS can align software, infrastructure, AI workflows, and ongoing
-            maintenance into one technical roadmap.
+            Tell us what you need to launch or scale, and we will map a secure
+            implementation plan across product, automation, and infrastructure.
           </p>
 
           <div className="mt-8 grid gap-4">
@@ -48,6 +48,15 @@ export function ContactSection() {
                 <div className="font-semibold text-white">Digital-first MSME technology partner</div>
               </div>
             </div>
+            <Link id="demo" href="/contact" className="glass-panel flex items-center gap-4 rounded-lg p-4 transition hover:border-cyan-200/40">
+              <div className="grid h-11 w-11 place-items-center rounded-lg border border-signal/30 bg-signal/10 text-signal">
+                <CalendarDays className="h-5 w-5" />
+              </div>
+              <div>
+                <div className="text-xs text-slate-400">Request demo flow</div>
+                <div className="font-semibold text-white">Schedule strategy call and platform walkthrough</div>
+              </div>
+            </Link>
           </div>
         </motion.div>
 

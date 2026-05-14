@@ -1,0 +1,103 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: ftas-postgres
+    environment:
+      POSTGRES_DB: ftas_ai
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./infra/postgres/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
+
+  redis:
+    image: redis:7-alpine
+    container_name: ftas-redis
+    ports:
+      - "6379:6379"
+
+  gateway:
+    build:
+      context: ./backend/gateway
+    container_name: ftas-gateway
+    env_file:
+      - ./backend/gateway/.env.example
+    environment:
+      PORT: 8080
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/ftas_ai
+      REDIS_URL: redis://redis:6379
+      MEMORY_SERVICE_URL: http://memory-service:8101
+      OCR_SERVICE_URL: http://ocr-service:8102
+      VOICE_SERVICE_URL: http://voice-service:8103
+      SAFETY_SERVICE_URL: http://safety-service:8104
+      CREATIVE_SERVICE_URL: http://creative-service:8105
+      MEDIA_SERVICE_URL: http://media-service:8106
+      SIMULATION_SERVICE_URL: http://simulation-service:8107
+    depends_on:
+      - postgres
+      - redis
+      - memory-service
+      - ocr-service
+      - voice-service
+      - safety-service
+      - creative-service
+      - media-service
+      - simulation-service
+    ports:
+      - "8080:8080"
+
+  memory-service:
+    build:
+      context: ./services/memory-service
+    container_name: ftas-memory-service
+    ports:
+      - "8101:8101"
+
+  ocr-service:
+    build:
+      context: ./services/ocr-service
+    container_name: ftas-ocr-service
+    ports:
+      - "8102:8102"
+
+  voice-service:
+    build:
+      context: ./services/voice-service
+    container_name: ftas-voice-service
+    ports:
+      - "8103:8103"
+
+  safety-service:
+    build:
+      context: ./services/safety-service
+    container_name: ftas-safety-service
+    ports:
+      - "8104:8104"
+
+  creative-service:
+    build:
+      context: ./services/creative-service
+    container_name: ftas-creative-service
+    ports:
+      - "8105:8105"
+
+  media-service:
+    build:
+      context: ./services/media-service
+    container_name: ftas-media-service
+    ports:
+      - "8106:8106"
+
+  simulation-service:
+    build:
+      context: ./services/simulation-service
+    container_name: ftas-simulation-service
+    ports:
+      - "8107:8107"
+
+volumes:
+  pgdata:

@@ -129,11 +129,10 @@ export function ThreeAICore() {
     <div className="absolute inset-0">
       <Canvas
         camera={{ position: [0, 0, 4.6], fov: 42 }}
-        dpr={[1, 1.5]}
+        dpr={[1, 1.25]}
         gl={{
           antialias: true,
           alpha: true,
-          preserveDrawingBuffer: true,
           powerPreference: "high-performance",
         }}
       >

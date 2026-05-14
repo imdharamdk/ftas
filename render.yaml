@@ -1,0 +1,149 @@
+services:
+  - type: web
+    name: ftas-ai-gateway
+    runtime: node
+    plan: starter
+    rootDir: backend/gateway
+    buildCommand: npm install
+    startCommand: npm run start
+    autoDeploy: true
+    healthCheckPath: /api/v1/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: JWT_SECRET
+        generateValue: true
+      - key: API_KEY_ENCRYPTION_SECRET
+        sync: false
+      - key: JWT_ISSUER
+        value: ftas-ai-ecosystem
+      - key: JWT_AUDIENCE
+        value: ftas-enterprise
+      - key: DATABASE_URL
+        fromDatabase:
+          name: ftas-ai-db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          type: keyvalue
+          name: ftas-ai-queue
+          property: connectionString
+      - key: MEMORY_SERVICE_URL
+        value: http://ftas-memory-service:8101
+      - key: OCR_SERVICE_URL
+        value: http://ftas-ocr-service:8102
+      - key: VOICE_SERVICE_URL
+        value: http://ftas-voice-service:8103
+      - key: SAFETY_SERVICE_URL
+        value: http://ftas-safety-service:8104
+      - key: CREATIVE_SERVICE_URL
+        value: http://ftas-creative-service:8105
+      - key: MEDIA_SERVICE_URL
+        value: http://ftas-media-service:8106
+      - key: SIMULATION_SERVICE_URL
+        value: http://ftas-simulation-service:8107
+
+  - type: worker
+    name: ftas-ai-worker
+    runtime: node
+    plan: starter
+    rootDir: backend/gateway
+    buildCommand: npm install
+    startCommand: npm run worker
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: ftas-ai-db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          type: keyvalue
+          name: ftas-ai-queue
+          property: connectionString
+
+  - type: cron
+    name: ftas-ai-maintenance-cron
+    runtime: node
+    plan: starter
+    rootDir: backend/gateway
+    buildCommand: npm install
+    startCommand: npm run cron:maintenance
+    schedule: "*/15 * * * *"
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: ftas-ai-db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          type: keyvalue
+          name: ftas-ai-queue
+          property: connectionString
+
+  - type: pserv
+    name: ftas-memory-service
+    runtime: docker
+    plan: starter
+    rootDir: services/memory-service
+    autoDeploy: true
+
+  - type: pserv
+    name: ftas-ocr-service
+    runtime: docker
+    plan: starter
+    rootDir: services/ocr-service
+    autoDeploy: true
+
+  - type: pserv
+    name: ftas-voice-service
+    runtime: docker
+    plan: starter
+    rootDir: services/voice-service
+    autoDeploy: true
+
+  - type: pserv
+    name: ftas-safety-service
+    runtime: docker
+    plan: starter
+    rootDir: services/safety-service
+    autoDeploy: true
+
+  - type: pserv
+    name: ftas-creative-service
+    runtime: docker
+    plan: starter
+    rootDir: services/creative-service
+    autoDeploy: true
+
+  - type: pserv
+    name: ftas-media-service
+    runtime: docker
+    plan: starter
+    rootDir: services/media-service
+    autoDeploy: true
+
+  - type: pserv
+    name: ftas-simulation-service
+    runtime: docker
+    plan: starter
+    rootDir: services/simulation-service
+    autoDeploy: true
+
+  - type: keyvalue
+    name: ftas-ai-queue
+    plan: starter
+    ipAllowList: []
+    maxmemoryPolicy: noeviction
+
+databases:
+  - name: ftas-ai-db
+    plan: starter
+    databaseName: ftas_ai
+    user: ftas_ai_user

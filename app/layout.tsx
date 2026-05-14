@@ -1,6 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { Manrope, Space_Grotesk } from "next/font/google";
+import type { ReactNode } from "react";
 import "./globals.css";
+import "react-day-picker/style.css";
+import "highlight.js/styles/github-dark.css";
+import "@xyflow/react/dist/style.css";
 import { AppProviders } from "@/components/providers/AppProviders";
 import { AppShell } from "@/components/AppShell";
 
@@ -19,29 +23,28 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   metadataBase: new URL("https://ftas.in"),
   title: {
-    default: "FTAS - Fintech Automated Solutions",
-    template: "%s | FTAS",
+    default: "FTAS AI Ecosystem - Fintech Automated Solutions",
+    template: "%s | FTAS AI Ecosystem",
   },
   description:
-    "FTAS is a premium fintech SaaS platform delivering AI-driven automation, cloud infrastructure, secure analytics, and enterprise digital operations.",
+    "FTAS AI Ecosystem is an enterprise multi-agent AI operating system for orchestration, automation, analytics, and fintech intelligence.",
   keywords: [
-    "FTAS",
+    "FTAS AI Ecosystem",
     "Fintech Automated Solutions",
-    "Fintech SaaS",
-    "AI Platform",
-    "Automation Platform",
-    "AI Automation",
-    "Cloud Infrastructure SaaS",
-    "Digital Operations",
-    "Enterprise Technology",
+    "Multi-Agent AI",
+    "AI Orchestration Platform",
+    "Enterprise AI Operating System",
+    "AI Command Center",
+    "Fintech Intelligence",
+    "Workflow Automation",
   ],
   openGraph: {
-    title: "FTAS - Fintech Automated Solutions",
+    title: "FTAS AI Ecosystem",
     description:
-      "Premium fintech SaaS experience with AI workflows, automation, product analytics, and enterprise-ready cloud operations.",
+      "Enterprise multi-agent AI platform with routing engine, admin controls, workflow orchestration, memory, safety, voice, OCR, and media departments.",
     type: "website",
     url: "https://ftas.in",
-    siteName: "FTAS",
+    siteName: "FTAS AI Ecosystem",
   },
   alternates: {
     canonical: "/",
@@ -62,10 +65,10 @@ export const viewport: Viewport = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${manrope.variable} ${spaceGrotesk.variable}`}>
         <AppProviders>
           <AppShell>{children}</AppShell>
